@@ -1,0 +1,92 @@
+{% block body %}
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="">List Of Vehicles</a>
+                </li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Information
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>First Name</th>
+                                <th>Entry Date</th>
+                                <th>Exit Date</th>
+                                <th>Days Spent</th>
+                                <th>Total Cost</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                        {% if customers %}
+                            {% for customer in customers %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td> 
+                                    <td>{{ customer.first_name }}</td>
+                                    <td>{{ customer.reg_date }}</td>
+                                    <td>{{ customer.exit_date }}</td>
+                                    <td>{{ customer.days_spent }}</td>
+                                    <td>{{ customer.total_cost }}</td>
+                                   <td>
+                                        <button type="button" class="bs-modal read-book btn btn-sm btn-primary" data-form-url="{% url 'view_vehicle' customer.pk %}">
+          <span class="fa fa-eye"></span>
+        </button>
+
+                                        <a class="btn btn-sm btn-success" href="{% url 'pay' customer.pk %}"><span class="fas fa-comments-dollar"></span> Pay</a>
+
+                                          <button type="button" class="update-book btn btn-sm btn-warning" data-form-url="{% url 'update_vehicle' customer.pk %}">
+          <span class="fa fa-pencil"> Edit</span>
+        </button>
+
+                                        <button type="button" class="bs-modal delete-book btn btn-sm btn-danger" data-form-url="{% url 'delete_vehicle' customer.pk %}">
+          <span class="fa fa-trash"> Delete</span>
+        </button>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                            </tbody>
+                        </table>
+                                                  {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </tbody>
+</table>
+{% endblock %}

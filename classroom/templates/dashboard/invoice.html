@@ -1,0 +1,163 @@
+{% load static %}
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+
+                  #myline{
+   opacity: 0.6;
+   width: 800px;
+   height: 10px;
+   margin-right: auto;
+   margin-left: auto;
+   background-color:#666;
+}
+
+#logo {
+  float: left;
+  margin-top: 8px;
+}
+
+#logo img {
+  height: 70px;
+}
+
+#company {
+  float: right;
+  text-align: right;
+}
+
+  #myline3 {
+            border-top: 3px double #8c8b8b;
+             width: 800px;        
+        }
+
+        </style>
+    </head>
+    <body>
+      <div id="company" style="float: right;">
+        <h1 class="name"></h1>
+        <h1 class="name" style="text-align: right; color: #007cae">Payment Invoice</h1>
+        <div style="text-align: right;">MotechApp</div>
+        <div style="text-align: right;">{{data.address}}</div>
+        <div style="text-align: right;">{{data.location}}</div>
+        <div style="text-align: right;"><a href="mailto:{{company.email}}">{{data.email}}</a></div>
+      <br>
+      </div>
+      <hr / id="myline3">
+      <hr / id="myline2">
+      </div>
+    </header> 
+
+        <div class='wrapper'>
+            <div class='header'>
+                   {% if infos %}
+      {% for info in infos %}
+      {% endfor %}
+        {% endif %}
+
+           
+            </div>
+        <div>
+        <div class='details'>
+
+     
+
+
+  {% if infos %}
+      {% for info in infos %}
+
+<table id="customers" class="responstable" style="border-collapse: collapse; border: 1px solid black; box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0); width: 40px;">
+      <thead>
+        <tr style="transition: all .2s ease-in;
+        cursor: pointer; cursor: pointer;">
+          <th colspan="2" style="background-color: black; color: white; font-weight: bold; font-size: 25px;">Customer Details</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="unit" style="border: 1px solid black; text-align:left; color: black; color: black;">Full Names</td>
+
+           <td class="unit" style="border: 1px solid black; text-align:left; color: black;">{{info.first_name}} {{info.last_name}}</td>
+        </tr> 
+                <tr>
+          <td class="unit" style="border: 1px solid black; text-align:left; color: black; color: black;">Entry Date</td>
+
+           <td class="unit" style="border: 1px solid black; text-align:left; color: black;">{{info.reg_date}}</td>
+        </tr> 
+
+
+             <tr>
+          <td class="unit" style="border: 1px solid black; text-align:left; color: black; color: black;">Exit Date</td>
+
+           <td class="unit" style="border: 1px solid black; text-align:left; color: black;">{{info.exit_date}}</td>
+        </tr> 
+
+             <tr>
+          <td class="unit" style="border: 1px solid black; text-align:left; color: black; color: black;">Total Days</td>
+
+           <td class="unit" style="border: 1px solid black; text-align:left; color: black;">{{info.days_spent}}</td>
+        </tr>
+             <tr>
+          <td class="unit" style="border: 1px solid black; text-align:left; color: black; color: black;">Card Number</td>
+
+           <td class="unit" style="border: 1px solid black; text-align:left; color: black;">{{info.id}}</td>
+        </tr>  
+
+                <tr>
+          <td class="unit" style="border: 1px solid black; text-align:left; color: black; color: black;">Total Cost</td>
+
+           <td class="unit" style="border: 1px solid black; text-align:left; color: black;">{{info.total_cost}}</td>
+        </tr>     
+
+      </tbody>
+      </table>
+
+
+       {% endfor %}
+        {% endif %}
+
+    <br>
+    <br>
+
+        <p>Provided by : _______________________________________</p>
+        <p>Signature   : _______________________________________</p>
+
+
+
+        </div>
+    </div>
+    </body>
+</html>

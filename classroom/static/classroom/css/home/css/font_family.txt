@@ -1,0 +1,4 @@
+'Trocchi', serif
+'Source Sans Pro', sans-serif
+'Raleway',sans-serif
+'Enriqueta', arial, serif
